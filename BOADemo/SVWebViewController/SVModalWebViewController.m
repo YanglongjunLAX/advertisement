@@ -1,0 +1,58 @@
+//
+//  SVModalWebViewController.m
+//
+//  Created by Oliver Letterer on 13.08.11.
+//  Copyright 2011 Home. All rights reserved.
+//
+//  https://github.com/samvermette/SVWebViewController
+
+#import "SVModalWebViewController.h"
+#import "SVWebViewController.h"
+
+@interface SVModalWebViewController ()
+
+@property (nonatomic, strong) SVWebViewController *webViewController;
+
+@end
+
+
+@implementation SVModalWebViewController
+
+@synthesize barsTintColor, availableActions, webViewController;
+
+#pragma mark - Initialization
+
+
+- (id)initWithAddress:(NSString*)urlString {
+    return [self initWithURL:[NSURL URLWithString:urlString]];
+}
+
+- (id)initWithURL:(NSURL *)URL {
+    self.webViewController = [[SVWebViewController alloc] initWithURL:URL];
+    if (self = [super initWithRootViewController:self.webViewController]) {
+        self.webViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:webViewController action:@selector(doneButtonClicked:)];
+    }
+    return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:NO];
+    
+    self.webViewController.title = self.title;
+//    self.navigationBar.tintColor = self.barsTintColor;
+    if (!UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        self.navigationBarHidden = YES;
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)setAvailableActions:(SVWebViewControllerAvailableActions)newAvailableActions {
+    self.webViewController.availableActions = newAvailableActions;
+}
+
+@end
