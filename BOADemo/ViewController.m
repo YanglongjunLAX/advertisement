@@ -67,22 +67,23 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
     {
         [[BOADHttpClient sharedInstance] getUrlByType:3];
         self.type = 3;
-//        [self configWebViewConstraintByType:3];
     };
     [[BOADHttpClient sharedInstance] getSerVerInfo];
+    __weak __typeof(self)weakSelf = self;
     [BOADHttpClient sharedInstance].action = ^(NSDictionary* info)
     {
-        self.adInfo = info;
-        if (self.type == 3 || self.type == 1)
+        
+        weakSelf.adInfo = info;
+        if (weakSelf.type == 3 || weakSelf.type == 1)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
                 FullScreenController *vc = [[FullScreenController alloc] initWithAddress:info[@"request_url"]];
                 
                 vc.action = ^(id sender)
                 {
-                    [self tapAction:sender];
+                    [weakSelf tapAction:sender];
                 };
-                if (self.type == 3)
+                if (weakSelf.type == 3)
                 {
                     vc.type = 0;
                 }
@@ -91,11 +92,11 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
                     vc.type = 1;
                 }
                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                [self.navigationController presentViewController:nav animated:YES completion:^{
+                [weakSelf.navigationController presentViewController:nav animated:YES completion:^{
                     
                 }];
                 
-            });
+//            });
         }
         else
         {

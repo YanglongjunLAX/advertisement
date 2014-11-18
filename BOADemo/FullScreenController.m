@@ -56,7 +56,8 @@
 
 - (void)loadView
 {
-    mainWebView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [super loadView];
+    mainWebView = [[UIWebView alloc] init];
     mainWebView.delegate = self;
     mainWebView.scalesPageToFit = YES;
     mainWebView.opaque = NO;
@@ -67,13 +68,13 @@
                                                           action:@selector(tapAction:)];
     self.tapGes.delegate = self;
     [mainWebView addGestureRecognizer:self.tapGes];
-    [self loadURL:self.URL];
-    [self.navigationController.view addSubview:mainWebView];
+    self.view = mainWebView;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadURL:self.URL];
     
 //    if(self.type == 0)
 //    {
@@ -103,15 +104,6 @@
 //        });
 //        dispatch_resume(_timer);
 //    }
-}
-
-- (void)updateViewConstraints
-{
-    [super updateViewConstraints];
-    [mainWebView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
-    [mainWebView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
-    [mainWebView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
-    [mainWebView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
 }
 
 - (void)tapAction:(id)sender
@@ -182,6 +174,10 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 //    NSLog(@"%@",error);
     [self doneButtonClicked:nil];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
