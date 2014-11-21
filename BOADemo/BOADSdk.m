@@ -16,6 +16,7 @@
 #import "NSString+BOAD.h"
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <AdSupport/AdSupport.h>
 
 @implementation BOADSdk
 
@@ -24,24 +25,23 @@
         _api_key = [BOADPlatform sharedInstance].appId;
         _date_creation = [NSString stringWithFormat:@"%@", @((long long)([[NSDate date] timeIntervalSince1970] * 1000))];
         _advert_source = BOADAdSource;
-        _imei = @"863985021738818";
+        _imei = @""; //安卓必须填写，ios可以不填
+        
         _ifa = @"";
-        _ifa = @"2e3r4t5y5";
-//        Class clazz = NSClassFromString(@"ASIdentifierManager");
-//        if (clazz) {// more safety way
-//            _ifa = objc_msgSend(objc_msgSend(objc_msgSend(clazz, NSSelectorFromString(@"sharedManager")), NSSelectorFromString(@"advertisingIdentifier")), NSSelectorFromString(@"UUIDString")) ?: @"";// maybe a litter dangerous
-//        }
+        ASIdentifierManager *identifiManager = [ASIdentifierManager sharedManager];
+        _ifa = [identifiManager.advertisingIdentifier UUIDString];
         _mac_address = [[UIDevice currentDevice] BOAD_macAddress] ?: @"";
         _ip_address = [[UIDevice currentDevice] BOAD_ipAddress] ?: @"";
         _platform = @"ios";
-        _sdk_version = [BOADPlatform sharedInstance].sdkVersion ?: @"3.0.0";
+        _sdk_version = [BOADPlatform sharedInstance].sdkVersion ?: @"3.0.0"; //根据实际版本传入
         _device_brand = @"apple";
         _os_version = [[UIDevice currentDevice] systemVersion] ?: @"";
-//        _latitude = [BOADPlatform sharedInstance].latitude;
-//        _longitude = [BOADPlatform sharedInstance].longitude;
+        /*!
+         *  经度，纬度，获取不到的情况下填写0
+         */
         _latitude   = 0.0;
         _longitude  = 0.0;
-        _imsi = @"46001";
+        _imsi = @"";  //IMSI号
         _openudid = [BOADOpenUDID value] ?: @"";
         _net = [BOADReachability BOAD_statusBarNetworkType] ?: @"";
         _device_width = [UIScreen mainScreen].bounds.size.width * [UIScreen mainScreen].scale;

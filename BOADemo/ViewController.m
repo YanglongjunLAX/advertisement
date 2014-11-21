@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "BOADHttpClient.h"
-#import "NSString+BOAD.h"
 #import "UIView+AutoLayout.h"
 #import "SVModalWebViewController.h"
 #import <MessageUI/MFMessageComposeViewController.h>
@@ -18,25 +17,31 @@
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate,
 UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDelegate>
 
-@property (nonatomic, strong) NSArray  *dataList;
+@property (nonatomic, strong) NSArray  *dataList;//tableView数据
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+//广告信息
 @property (nonatomic, strong) NSDictionary *adInfo;
-
+//显示广告页面
 @property (nonatomic, strong) UIWebView    *webView;
+//点击手势
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
+//广告类型
 @property (nonatomic, assign) NSUInteger  type;
-
+//关闭按钮
 @property (nonatomic, strong) UIButton    *closeButton;
-
+//插屏遮挡
 @property (nonatomic, strong) UIView  *keepOutView;
 
 - (void)configTableView;
 //
 - (void)loadRequest:(NSString *)path;
 
-//
+/*!
+ *  点击webView,根据当前广告click_action值进行不同处理
+ *
+ *  @param sender
+ */
 - (void)tapAction:(id)sender;
 
 ///发送短信
@@ -44,83 +49,70 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
 //显示错误信息
 - (void)showAlertView:(NSString *)message;
 - (void)clickButtonAction:(UIButton *)button;
+//显示根据广告类型设置WebView布局
 - (void)configWebViewConstraintByType:(NSUInteger)type;
+//
+- (void)configBoadHttpServer;
 @end
 
 @implementation ViewController
 
-- (id)init
-{
-    self = [super init];
-    if (self)
-    {
-        self.type = 0;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configTableView];
+    
     self.title = @"Test Demo";
+    
+    [self configTableView];
+    [self configBoadHttpServer];
+}
+
+- (void)configBoadHttpServer
+{
     [BOADHttpClient sharedInstance].serverSuccess = ^()
     {
         [[BOADHttpClient sharedInstance] getUrlByType:3];
         self.type = 3;
     };
+    
     [[BOADHttpClient sharedInstance] getSerVerInfo];
     __weak __typeof(self)weakSelf = self;
     [BOADHttpClient sharedInstance].action = ^(NSDictionary* info)
     {
-        
         weakSelf.adInfo = info;
-        if (weakSelf.type == 3 || weakSelf.type == 1)
+        if (weakSelf.type == 3 || weakSelf.type == 1)//全屏 开屏弹出viewController
         {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-                FullScreenController *vc = [[FullScreenController alloc] initWithAddress:info[@"request_url"]];
+            FullScreenController *vc = [[FullScreenController alloc] initWithAddress:info[@"request_url"]];
+            
+            vc.action = ^(id sender) //点击webView响应
+            {
+                [weakSelf tapAction:sender];
+            };
+            if (weakSelf.type == 3)
+            {
+                vc.type = 0;
+            }
+            else
+            {
+                vc.type = 1;
+            }
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [weakSelf.navigationController presentViewController:nav animated:YES completion:^{
                 
-                vc.action = ^(id sender)
-                {
-                    [weakSelf tapAction:sender];
-                };
-                if (weakSelf.type == 3)
-                {
-                    vc.type = 0;
-                }
-                else
-                {
-                    vc.type = 1;
-                }
-                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                [weakSelf.navigationController presentViewController:nav animated:YES completion:^{
-                    
-                }];
-                
-//            });
+            }];
         }
         else
         {
-            [self loadRequest:info[@"request_url"]];
+            [self loadRequest:info[@"request_url"]];//banaer 插屏加载
         }
     };
+    //广告请求错误
     [BOADHttpClient sharedInstance].errorAction = ^()
     {
         [self.webView autoRemoveConstraintsAffectingView];
         [self.webView removeFromSuperview];
         self.webView = nil;
-        [self.keepOutView removeFromSuperview
-         ];
+        [self.keepOutView removeFromSuperview];
     };
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)updateViewConstraints
-{
-    [super updateViewConstraints];
 }
 
 - (void)loadRequest:(NSString *)path
@@ -155,9 +147,9 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
         _webView.allowsInlineMediaPlayback = YES;
         _webView.mediaPlaybackRequiresUserAction = NO;
         _webView.opaque = NO;
-        _webView.backgroundColor = [UIColor clearColor];
         _webView.delegate = self;
         _webView.scrollView.scrollEnabled = NO;
+        //添加手势
         self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
         self.tap.delegate = self;
         [_webView addGestureRecognizer:self.tap];
@@ -265,11 +257,11 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifi = @"celliden";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifi];
+    static NSString *Identifier = @"Identifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifi];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         cell.textLabel.font = [UIFont systemFontOfSize:20];
         cell.textLabel.textColor = [UIColor blackColor];
     }
@@ -285,29 +277,13 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //
-    switch (indexPath.row)
-    {
-        case 0:
-//            [self.view addSubview:self.webView];
-            break;
-        case 1:
-//            [self.navigationController.view addSubview:self.webView];
-            break;
-        case 2:
-//            [self.view addSubview:self.webView];
-            break;
-        case 3:
-            break;
-        default:
-            break;
-    }
+    
     self.type = indexPath.row;
     if (self.type == 0 || self.type == 2)
     {
         [self configWebViewConstraintByType:indexPath.row];
     }
-//    [SVProgressHUD show];
+    
     [[BOADHttpClient sharedInstance] getUrlByType:indexPath.row];
 }
 
@@ -336,11 +312,9 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"%@",error);
     dispatch_async(dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });
-//    self.webView.hidden = YES;
     [self.webView removeFromSuperview];
     self.webView = nil;
     [self.keepOutView removeFromSuperview];
@@ -391,33 +365,24 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
     [self.webView autoRemoveConstraintsAffectingView];
     switch (type)
     {
-        case 0:
+        case 0://banner
         {
             [self.view addSubview:self.webView];
-//            self.closeButton.hidden = YES;
+            self.closeButton.hidden = YES;
             [self.webView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0.0];
             [self.webView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0.0];
             [self.webView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0.0];
             [self.webView autoSetDimension:ALDimensionHeight toSize:50.0f];
             break;
         }
-        case 1:
-        {
-            [self.navigationController.view addSubview:self.webView];
-            self.closeButton.hidden = YES;
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0.0];
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0.0];
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.0];
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0.0];
-            break;
-        }
-        case 2:
+        case 2://插屏
         {
             [self.view addSubview:self.webView];
             self.closeButton.hidden = YES;
+            //插屏 iphone默认大小 300 * 250
             CGFloat W = (CGRectGetWidth(self.view.bounds) - 300)*0.5;
             CGFloat h = (CGRectGetHeight(self.view.bounds) - 250) * 0.5;
-            
+            //ipad 600 * 500
             if (!(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone))
             {
                 W = (CGRectGetWidth(self.view.bounds) - 600)*0.5;
@@ -428,16 +393,6 @@ UIWebViewDelegate,UIGestureRecognizerDelegate,MFMessageComposeViewControllerDele
             [self.webView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:W];
             [self.webView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:h];
             [self.webView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:h];
-            break;
-        }
-        case 3:
-        {
-            [self.view.window addSubview:self.webView];
-            //            self.closeButton.hidden = YES;
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0.0];
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0.0];
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0.0];
-            [self.webView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.0];
             break;
         }
         default:

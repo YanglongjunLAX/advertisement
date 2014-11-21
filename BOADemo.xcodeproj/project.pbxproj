@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		016803001A1595B50085DEA5 /* FullScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 016802FF1A1595B50085DEA5 /* FullScreenController.m */; };
 		016803021A15E0C50085DEA5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 016803011A15E0C50085DEA5 /* Settings.bundle */; };
+		016C4DE91A1DD2FD0076320F /* BOADReachability+BOAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 016C4DE81A1DD2FD0076320F /* BOADReachability+BOAD.m */; };
+		016C4DEB1A1DD6A40076320F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DEA1A1DD6A40076320F /* AdSupport.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		016C4DED1A1DD8A70076320F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DEC1A1DD8A70076320F /* AVFoundation.framework */; };
+		016C4DEF1A1DD8BD0076320F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DEE1A1DD8BD0076320F /* SystemConfiguration.framework */; };
+		016C4DF11A1DD8C80076320F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DF01A1DD8C80076320F /* QuartzCore.framework */; };
+		016C4DF31A1DD8DB0076320F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DF21A1DD8DB0076320F /* CoreGraphics.framework */; };
+		016C4DF51A1DD8E50076320F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DF41A1DD8E50076320F /* UIKit.framework */; };
+		016C4DF71A1DD8F40076320F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DF61A1DD8F40076320F /* Foundation.framework */; };
+		016C4DFA1A1DD92A0076320F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DF81A1DD92A0076320F /* EventKit.framework */; };
+		016C4DFB1A1DD92A0076320F /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DF91A1DD92A0076320F /* EventKitUI.framework */; };
+		016C4DFD1A1DD94A0076320F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016C4DFC1A1DD94A0076320F /* CoreMotion.framework */; };
 		01A6D09B1A1445B800E01B2D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A6D09A1A1445B800E01B2D /* UIView+AutoLayout.m */; };
 		01A6D0A61A144BC200E01B2D /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01A6D09D1A144BC200E01B2D /* SVWebViewController.strings */; };
 		01A6D0A71A144BC200E01B2D /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A6D0A01A144BC200E01B2D /* SVModalWebViewController.m */; };
@@ -29,15 +40,9 @@
 		01D54B541A1335E2007A4DBB /* NSString+BOAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B531A1335E2007A4DBB /* NSString+BOAD.m */; };
 		01D54B571A13536C007A4DBB /* BOADSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B561A13536C007A4DBB /* BOADSdk.m */; };
 		01D54B5A1A135479007A4DBB /* UIDevice+BOAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B591A135479007A4DBB /* UIDevice+BOAD.m */; };
-		01D54B621A13683B007A4DBB /* NSTimer+BOAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B5F1A13683B007A4DBB /* NSTimer+BOAD.m */; };
-		01D54B631A13683B007A4DBB /* UIApplication+BOAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B611A13683B007A4DBB /* UIApplication+BOAD.m */; };
 		01D54B661A136862007A4DBB /* BOADPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B651A136862007A4DBB /* BOADPlatform.m */; };
-		01D54B741A1368BC007A4DBB /* BOADRegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B691A1368BC007A4DBB /* BOADRegExCategories.m */; };
-		01D54B751A1368BC007A4DBB /* BOADMBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B6B1A1368BC007A4DBB /* BOADMBProgressHUD.m */; };
 		01D54B761A1368BC007A4DBB /* BOADOpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B6D1A1368BC007A4DBB /* BOADOpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		01D54B771A1368BC007A4DBB /* BOADReachability+BOAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B6F1A1368BC007A4DBB /* BOADReachability+BOAD.m */; };
 		01D54B781A1368BC007A4DBB /* BOADReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B711A1368BC007A4DBB /* BOADReachability.m */; };
-		01D54B791A1368BC007A4DBB /* BOADCircleIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B731A1368BC007A4DBB /* BOADCircleIndicator.m */; };
 		01D54B7C1A136BB4007A4DBB /* BOADGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D54B7B1A136BB4007A4DBB /* BOADGlobal.m */; };
 		15EEFBEAB23845C7A0BE881E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F1D509875845F4A7208B04 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -56,6 +61,18 @@
 		016802FE1A1595B50085DEA5 /* FullScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenController.h; sourceTree = "<group>"; };
 		016802FF1A1595B50085DEA5 /* FullScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenController.m; sourceTree = "<group>"; };
 		016803011A15E0C50085DEA5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		016C4DE71A1DD2FD0076320F /* BOADReachability+BOAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BOADReachability+BOAD.h"; sourceTree = "<group>"; };
+		016C4DE81A1DD2FD0076320F /* BOADReachability+BOAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BOADReachability+BOAD.m"; sourceTree = "<group>"; };
+		016C4DEA1A1DD6A40076320F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		016C4DEC1A1DD8A70076320F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		016C4DEE1A1DD8BD0076320F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		016C4DF01A1DD8C80076320F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		016C4DF21A1DD8DB0076320F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		016C4DF41A1DD8E50076320F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		016C4DF61A1DD8F40076320F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		016C4DF81A1DD92A0076320F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		016C4DF91A1DD92A0076320F /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		016C4DFC1A1DD94A0076320F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		01A6D0991A1445B800E01B2D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		01A6D09A1A1445B800E01B2D /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		01A6D09E1A144BC200E01B2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
@@ -93,24 +110,12 @@
 		01D54B561A13536C007A4DBB /* BOADSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADSdk.m; sourceTree = "<group>"; };
 		01D54B581A135479007A4DBB /* UIDevice+BOAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+BOAD.h"; sourceTree = "<group>"; };
 		01D54B591A135479007A4DBB /* UIDevice+BOAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+BOAD.m"; sourceTree = "<group>"; };
-		01D54B5E1A13683B007A4DBB /* NSTimer+BOAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BOAD.h"; sourceTree = "<group>"; };
-		01D54B5F1A13683B007A4DBB /* NSTimer+BOAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BOAD.m"; sourceTree = "<group>"; };
-		01D54B601A13683B007A4DBB /* UIApplication+BOAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+BOAD.h"; sourceTree = "<group>"; };
-		01D54B611A13683B007A4DBB /* UIApplication+BOAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+BOAD.m"; sourceTree = "<group>"; };
 		01D54B641A136862007A4DBB /* BOADPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADPlatform.h; sourceTree = "<group>"; };
 		01D54B651A136862007A4DBB /* BOADPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADPlatform.m; sourceTree = "<group>"; };
-		01D54B681A1368BC007A4DBB /* BOADRegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADRegExCategories.h; sourceTree = "<group>"; };
-		01D54B691A1368BC007A4DBB /* BOADRegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADRegExCategories.m; sourceTree = "<group>"; };
-		01D54B6A1A1368BC007A4DBB /* BOADMBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADMBProgressHUD.h; sourceTree = "<group>"; };
-		01D54B6B1A1368BC007A4DBB /* BOADMBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADMBProgressHUD.m; sourceTree = "<group>"; };
 		01D54B6C1A1368BC007A4DBB /* BOADOpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADOpenUDID.h; sourceTree = "<group>"; };
 		01D54B6D1A1368BC007A4DBB /* BOADOpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADOpenUDID.m; sourceTree = "<group>"; };
-		01D54B6E1A1368BC007A4DBB /* BOADReachability+BOAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BOADReachability+BOAD.h"; sourceTree = "<group>"; };
-		01D54B6F1A1368BC007A4DBB /* BOADReachability+BOAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BOADReachability+BOAD.m"; sourceTree = "<group>"; };
 		01D54B701A1368BC007A4DBB /* BOADReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADReachability.h; sourceTree = "<group>"; };
 		01D54B711A1368BC007A4DBB /* BOADReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADReachability.m; sourceTree = "<group>"; };
-		01D54B721A1368BC007A4DBB /* BOADCircleIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADCircleIndicator.h; sourceTree = "<group>"; };
-		01D54B731A1368BC007A4DBB /* BOADCircleIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADCircleIndicator.m; sourceTree = "<group>"; };
 		01D54B7A1A136BB4007A4DBB /* BOADGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOADGlobal.h; sourceTree = "<group>"; };
 		01D54B7B1A136BB4007A4DBB /* BOADGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOADGlobal.m; sourceTree = "<group>"; };
 		5D2E16B119F84B9895AA7C69 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -122,6 +127,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016C4DFD1A1DD94A0076320F /* CoreMotion.framework in Frameworks */,
+				016C4DFA1A1DD92A0076320F /* EventKit.framework in Frameworks */,
+				016C4DFB1A1DD92A0076320F /* EventKitUI.framework in Frameworks */,
+				016C4DF71A1DD8F40076320F /* Foundation.framework in Frameworks */,
+				016C4DF51A1DD8E50076320F /* UIKit.framework in Frameworks */,
+				016C4DF31A1DD8DB0076320F /* CoreGraphics.framework in Frameworks */,
+				016C4DF11A1DD8C80076320F /* QuartzCore.framework in Frameworks */,
+				016C4DEF1A1DD8BD0076320F /* SystemConfiguration.framework in Frameworks */,
+				016C4DED1A1DD8A70076320F /* AVFoundation.framework in Frameworks */,
+				016C4DEB1A1DD6A40076320F /* AdSupport.framework in Frameworks */,
 				01A6D0AB1A144FA500E01B2D /* MessageUI.framework in Frameworks */,
 				15EEFBEAB23845C7A0BE881E /* libPods.a in Frameworks */,
 			);
@@ -186,7 +201,6 @@
 		01D54B251A130D30007A4DBB /* BOADemo */ = {
 			isa = PBXGroup;
 			children = (
-				01A6D0AC1A1458BA00E01B2D /* SVProgressHUD */,
 				01D54B671A136885007A4DBB /* Libs */,
 				01D54B4E1A13134A007A4DBB /* HttpClient */,
 				01D54B4D1A131339007A4DBB /* models */,
@@ -238,10 +252,6 @@
 				01D54B641A136862007A4DBB /* BOADPlatform.h */,
 				01D54B651A136862007A4DBB /* BOADPlatform.m */,
 				01D54B581A135479007A4DBB /* UIDevice+BOAD.h */,
-				01D54B5E1A13683B007A4DBB /* NSTimer+BOAD.h */,
-				01D54B5F1A13683B007A4DBB /* NSTimer+BOAD.m */,
-				01D54B601A13683B007A4DBB /* UIApplication+BOAD.h */,
-				01D54B611A13683B007A4DBB /* UIApplication+BOAD.m */,
 				01D54B591A135479007A4DBB /* UIDevice+BOAD.m */,
 				01D54B521A1335E2007A4DBB /* NSString+BOAD.h */,
 				01D54B531A1335E2007A4DBB /* NSString+BOAD.m */,
@@ -263,21 +273,16 @@
 		01D54B671A136885007A4DBB /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				016C4DE71A1DD2FD0076320F /* BOADReachability+BOAD.h */,
+				016C4DE81A1DD2FD0076320F /* BOADReachability+BOAD.m */,
+				01A6D0AC1A1458BA00E01B2D /* SVProgressHUD */,
 				01A6D09C1A144BC200E01B2D /* SVWebViewController */,
 				01A6D0991A1445B800E01B2D /* UIView+AutoLayout.h */,
 				01A6D09A1A1445B800E01B2D /* UIView+AutoLayout.m */,
-				01D54B681A1368BC007A4DBB /* BOADRegExCategories.h */,
-				01D54B691A1368BC007A4DBB /* BOADRegExCategories.m */,
-				01D54B6A1A1368BC007A4DBB /* BOADMBProgressHUD.h */,
-				01D54B6B1A1368BC007A4DBB /* BOADMBProgressHUD.m */,
 				01D54B6C1A1368BC007A4DBB /* BOADOpenUDID.h */,
 				01D54B6D1A1368BC007A4DBB /* BOADOpenUDID.m */,
-				01D54B6E1A1368BC007A4DBB /* BOADReachability+BOAD.h */,
-				01D54B6F1A1368BC007A4DBB /* BOADReachability+BOAD.m */,
 				01D54B701A1368BC007A4DBB /* BOADReachability.h */,
 				01D54B711A1368BC007A4DBB /* BOADReachability.m */,
-				01D54B721A1368BC007A4DBB /* BOADCircleIndicator.h */,
-				01D54B731A1368BC007A4DBB /* BOADCircleIndicator.m */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -285,6 +290,16 @@
 		4AC0A6E16A94427783BE3E9F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				016C4DFC1A1DD94A0076320F /* CoreMotion.framework */,
+				016C4DF81A1DD92A0076320F /* EventKit.framework */,
+				016C4DF91A1DD92A0076320F /* EventKitUI.framework */,
+				016C4DF61A1DD8F40076320F /* Foundation.framework */,
+				016C4DF41A1DD8E50076320F /* UIKit.framework */,
+				016C4DF21A1DD8DB0076320F /* CoreGraphics.framework */,
+				016C4DF01A1DD8C80076320F /* QuartzCore.framework */,
+				016C4DEE1A1DD8BD0076320F /* SystemConfiguration.framework */,
+				016C4DEC1A1DD8A70076320F /* AVFoundation.framework */,
+				016C4DEA1A1DD6A40076320F /* AdSupport.framework */,
 				01A6D0AA1A144FA500E01B2D /* MessageUI.framework */,
 				E9F1D509875845F4A7208B04 /* libPods.a */,
 			);
@@ -433,23 +448,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01D54B771A1368BC007A4DBB /* BOADReachability+BOAD.m in Sources */,
 				01D54B511A1313C2007A4DBB /* BOADHttpClient.m in Sources */,
-				01D54B751A1368BC007A4DBB /* BOADMBProgressHUD.m in Sources */,
-				01D54B741A1368BC007A4DBB /* BOADRegExCategories.m in Sources */,
 				01D54B2F1A130D30007A4DBB /* ViewController.m in Sources */,
-				01D54B791A1368BC007A4DBB /* BOADCircleIndicator.m in Sources */,
 				01A6D0A91A144BC200E01B2D /* SVWebViewController.m in Sources */,
 				01D54B781A1368BC007A4DBB /* BOADReachability.m in Sources */,
 				01D54B661A136862007A4DBB /* BOADPlatform.m in Sources */,
 				01D54B761A1368BC007A4DBB /* BOADOpenUDID.m in Sources */,
-				01D54B631A13683B007A4DBB /* UIApplication+BOAD.m in Sources */,
 				01D54B541A1335E2007A4DBB /* NSString+BOAD.m in Sources */,
 				016803001A1595B50085DEA5 /* FullScreenController.m in Sources */,
 				01D54B5A1A135479007A4DBB /* UIDevice+BOAD.m in Sources */,
-				01D54B621A13683B007A4DBB /* NSTimer+BOAD.m in Sources */,
 				01A6D09B1A1445B800E01B2D /* UIView+AutoLayout.m in Sources */,
 				01D54B2C1A130D30007A4DBB /* AppDelegate.m in Sources */,
+				016C4DE91A1DD2FD0076320F /* BOADReachability+BOAD.m in Sources */,
 				01D54B7C1A136BB4007A4DBB /* BOADGlobal.m in Sources */,
 				01A6D0B21A1458BA00E01B2D /* SVProgressHUD.m in Sources */,
 				01D54B571A13536C007A4DBB /* BOADSdk.m in Sources */,
@@ -591,6 +601,7 @@
 				INFOPLIST_FILE = BOADemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LIBTOOLFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -604,6 +615,7 @@
 				INFOPLIST_FILE = BOADemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LIBTOOLFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

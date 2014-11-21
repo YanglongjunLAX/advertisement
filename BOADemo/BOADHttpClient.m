@@ -10,20 +10,37 @@
 #import "BOADSdk.h"
 #import "NSString+BOAD.h"
 #import "SVProgressHUD.h"
-
-#define kForHost       @"http://58.67.196.85"
+//测试服
+//#define kForHost       @"http://58.67.196.85"
+//正式服
+#define kForHost       @"http://ad.o2omobi.com"
 #define kForPath       @"/api/api.list"
 
 #define kForDefaultKey    @"BOADApiTestKey"
 
+/*!
+ *  apiKey,可以从setting 输入
+ */
 static NSString *api_key = @"224dea2a00d611e48d4c000c2943dacd";
 
 @interface BOADHttpClient()
 @property (nonatomic, strong) NSArray *serverInfoList;
 @property (nonatomic, strong) NSDictionary *hostInfo;
+
 @end
 
 @implementation BOADHttpClient
+
++ (void)load
+{
+    [super load];
+    //apikey
+    NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kForDefaultKey];
+    if (string != nil)
+    {
+        api_key = string;
+    }
+}
 
 + (BOADHttpClient *)sharedInstance
 {
@@ -31,16 +48,6 @@ static NSString *api_key = @"224dea2a00d611e48d4c000c2943dacd";
     if (_httpClient == nil)
     {
         _httpClient = [[BOADHttpClient alloc] init];
-        if (_httpClient)
-        {
-            [_httpClient getSerVerInfo];
-            
-            NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kForDefaultKey];
-            
-//            NSLog(@"%@",string);
-            api_key = string;
-            
-        }
     }
     return _httpClient;
 }
@@ -53,6 +60,7 @@ static NSString *api_key = @"224dea2a00d611e48d4c000c2943dacd";
     [request setValue:[NSString stringWithFormat:@"0"] forHTTPHeaderField:@"Content-length"];
     [request setHTTPMethod:@"GET"];
     request.timeoutInterval = 10.0;
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSError *error;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -80,9 +88,8 @@ static NSString *api_key = @"224dea2a00d611e48d4c000c2943dacd";
             break;
         case ADTypechaping:
             sdk.show_type_value = 5;
-//            size = [UIScreen mainScreen].bounds.size;
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-                size = CGSizeMake(300, 250);//??
+                size = CGSizeMake(300, 250);
             } else {
                 size = CGSizeMake(600, 500);
             }
@@ -99,8 +106,7 @@ static NSString *api_key = @"224dea2a00d611e48d4c000c2943dacd";
             break;
     }
     //随机选择一个服务器
-    int index = arc4random() % self.serverInfoList.count;
-    self.hostInfo = self.serverInfoList[index];
+    self.hostInfo = self.serverInfoList[arc4random_uniform((u_int32_t)self.serverInfoList.count)];
     
     NSString *advert_size = [NSString stringWithFormat:@"%lu*%lu", (unsigned long)size.width, (unsigned long)size.height];
     sdk.advert_size = advert_size;

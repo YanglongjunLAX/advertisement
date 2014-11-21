@@ -18,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*!
+     *  设置 setting改变apikey的值
+     */
     [self populateRegistrationDomain];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
@@ -111,9 +114,7 @@
 
 - (void)onDefaultsChanged:(NSNotification*)aNotification
 {
-    //    BOADLOG();
     NSString *apiKey = [[NSUserDefaults standardUserDefaults] stringForKey:@"BOADApiTestKey"];
-//    [BOAD setAppId:apiKey appScrect:nil];
     [BOADHttpClient setApiKey:apiKey];
 }
 
